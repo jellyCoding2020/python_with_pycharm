@@ -21,6 +21,10 @@ leaf.penup()
 leaf.hideturtle()
 leaf.speed(0)
 
+
+
+print("hello world~~")
+
 game_started = False
 text_turtle = t.Turtle()
 text_turtle.write('Press SPACE to start', align='center', font=('Arial', 16) )
