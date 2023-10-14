@@ -53,10 +53,10 @@ def game_over():
     global question, time_left
     message = "Game over. you got %s questions correct" % str(score)
     question = [message, "-","-","-","-",5]
-    time_left = 0
+    time_left = "-"
 def correct_answer():
     global question, score, time_left
-    score = score +1
+    score = score + 1
     if questions:
         question = questions.pop(0)
         time_left = 10
@@ -64,7 +64,8 @@ def correct_answer():
     else:
         print("End of questions")
         game_over()
-def on_mouse_down(pos):
+
+def on_mouse_down(pos): #
     index = 1
     for box in answer_boxes:
         if box.collidepoint(pos):
@@ -75,7 +76,6 @@ def on_mouse_down(pos):
             else:
                 game_over()
         index = index + 1
-
 def update_time_left():
     global time_left
 
