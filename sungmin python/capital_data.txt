@@ -1,0 +1,5 @@
+India/New Delhi
+China/Beijing
+Korea/Seoul
+U.S.A/Washington D.C.
+Mexico/Mexico City
