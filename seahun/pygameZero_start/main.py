@@ -7,6 +7,8 @@ t.bgcolor('yellow')
 
 caterpillar = t.Turtle()
 caterpillar.shape('square')
+
+
 caterpillar.color('red')
 caterpillar.speed(0)
 caterpillar.penup()
@@ -23,7 +25,7 @@ leaf.speed(0)
 
 game_started = False
 text_turtle = t.Turtle()
-text_turtle.write('Press SPACE to start', align='center',                 
+text_turtle.write('Press SPACE to start', align='center',
                   font=('Arial', 16, 'bold'))
 text_turtle.hideturtle()
 
