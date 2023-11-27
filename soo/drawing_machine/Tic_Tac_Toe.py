@@ -1,12 +1,3 @@
-'''from guizero import App, Text,  Waffle
-
-app = App("Tic Tac Toe")
-instuctions = Text(app, text="Win the game")
-
-board = Waffle(app, width=3, height=3)
-
-app.display()'''
-
 import tkinter as tk
 from tkinter import messagebox
 
