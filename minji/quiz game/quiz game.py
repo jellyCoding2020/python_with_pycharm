@@ -13,8 +13,8 @@ answer2 = ['위', '펩신', '기관', '오줌관']
 answer3 = ['소장', '라이페이스', '코', '세뇨관']
 answer4 = ['간', '아밀레이스', '입', '대장']
 
-questions_geo = ['ㅇㅇㅇ', 'ㅇㅇㄴㅇ']
-answer_description = ['엘리뇨', '탄소중립']
+questions_hist = ['과거 송나라의 황제가 무신을 무시하고 문신을 우대한 정책은 무엇인가?', '세상에서 가장 넓은 땅을 보유했던 몽골제국의 첫번째 왕은?']
+answer_description = ['문치주의', '칭기즈칸']
 
 
 class quiz():
@@ -53,7 +53,7 @@ class quiz():
             self.answer = TextBox(self.button_box, command=self.check_answer,  grid=[1, 0])
 
         self.button5 = PushButton(self.button_box, text="다음 문제", grid=[4, 10], command=self.next_qna)
-
+      # self.button6 = PushButton(self.button_box, text="이전 문제", grid=[10, 10], command=self.pior_qna)
         #self.check_button1()
 
     def correct(self):
@@ -61,13 +61,12 @@ class quiz():
         self.message.text_color = "green"
     def wrong(self):
         self.message.value = "오답!"
-        self.message.text_color = "green"
+        self.message.text_color = "red"
     def check_answer(self):
         if self.answer.value == self.answer[self.question_number-1]:
             self.correct()
         else:
             self.wrong()
-
 
 
     def next_qna(self):
@@ -80,7 +79,7 @@ class quiz():
             self.button4.text = self.answer4[self.question_number - 1]
 
         self.message.text_color = "black"
-
+  # def pior_qna(self):
     def check_button1(self):
         while True:
             if self.button1.value == 1:
@@ -95,11 +94,10 @@ class quiz():
 #biologi_quiz.show_UI_main()
 #biologi_quiz.show_UI_quiz()
 
-geo_quiz = quiz(questions_geo, answer1, answer2, answer3, answer4, 2, answer_description)
-geo_quiz.show_UI_quiz()
+hist_quiz = quiz(questions_hist, answer1, answer2, answer3, answer4, 2, answer_description)
+hist_quiz.show_UI_quiz()
 
 app.display()
 
 #del biologi_quiz
-
 
