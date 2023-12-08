@@ -13,8 +13,10 @@ answer2 = ['위', '펩신', '기관', '오줌관']
 answer3 = ['소장', '라이페이스', '코', '세뇨관']
 answer4 = ['간', '아밀레이스', '입', '대장']
 
-questions_hist = ['과거 송나라의 황제가 무신을 무시하고 문신을 우대한 정책은 무엇인가?', '세상에서 가장 넓은 땅을 보유했던 몽골제국의 첫번째 왕은?']
-answer_description = ['문치주의', '칭기즈칸']
+questions_hist = ['과거 송나라의 황제가 무신을 무시하고 문신을 우대한 정책은?(영어로 바꾸어서 쓰시오)',
+                  '세상에서 가장 넓은 땅을 보유했었던 몽골 제국의 첫번째 왕은?(영어로 바꾸어서 쓰시오)',
+                  '최초로 세계 일주를 성공한 사람은?(영어로 바꾸어서 쓰시오)']
+answer_description = ['ansclwndml', 'cldrlwmzks', 'akwpffks']
 
 
 class quiz():
@@ -38,6 +40,7 @@ class quiz():
     def show_UI_quiz(self):
         self.message = Text(app, text=self.questions[self.question_number - 1], size=12)
 
+
         self.button_box = Box(app, layout="grid")
         if type == 1:
             self.button1 = PushButton(self.button_box, text=self.answer1[self.question_number - 1], grid=[0, 0])
@@ -53,9 +56,13 @@ class quiz():
             self.answer = TextBox(self.button_box, command=self.check_answer,  grid=[1, 0])
 
         self.button5 = PushButton(self.button_box, text="다음 문제", grid=[4, 10], command=self.next_qna)
-      # self.button6 = PushButton(self.button_box, text="이전 문제", grid=[10, 10], command=self.pior_qna)
+        self.button6 = PushButton(self.button_box, text="이전 문제", grid=[1, 10], command=self.pior_qna)
+        self.button7 = PushButton(self.button_box, text="확인하기", grid=[6, 10], command=self.click_button)
         #self.check_button1()
 
+
+    def click_button(self):
+        self.check = 1
     def correct(self):
         self.message.value = "정답!"
         self.message.text_color = "green"
@@ -63,8 +70,11 @@ class quiz():
         self.message.value = "오답!"
         self.message.text_color = "red"
     def check_answer(self):
-        if self.answer.value == self.answer[self.question_number-1]:
-            self.correct()
+        if self.answer == self.answer.value[self.question_number-1]:
+            if self.check == 1:
+                print("텍스트 상자의 내용:", self.answer)
+                self.correct()
+                print("텍스트 상자의 내용:", self.answer)
         else:
             self.wrong()
 
@@ -79,7 +89,10 @@ class quiz():
             self.button4.text = self.answer4[self.question_number - 1]
 
         self.message.text_color = "black"
-  # def pior_qna(self):
+    def pior_qna(self):
+        if self.question_number > 1:
+            self.question_number -= 1
+            self.message.value = self.questions[self.question_number-1]
     def check_button1(self):
         while True:
             if self.button1.value == 1:
@@ -100,4 +113,3 @@ hist_quiz.show_UI_quiz()
 app.display()
 
 #del biologi_quiz
-
