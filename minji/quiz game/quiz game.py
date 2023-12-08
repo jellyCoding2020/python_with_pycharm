@@ -38,8 +38,8 @@ class quiz():
         pass
 
     def show_UI_quiz(self):
-        self.message = Text(app, text=self.questions[self.question_number - 1], size=12)
-
+        self.message = Text(app, text=self.questions[self.question_number - 1], size=10)
+        self.check = 0
 
         self.button_box = Box(app, layout="grid")
         if type == 1:
@@ -57,26 +57,27 @@ class quiz():
 
         self.button5 = PushButton(self.button_box, text="다음 문제", grid=[4, 10], command=self.next_qna)
         self.button6 = PushButton(self.button_box, text="이전 문제", grid=[1, 10], command=self.pior_qna)
-        self.button7 = PushButton(self.button_box, text="확인하기", grid=[6, 10], command=self.click_button)
+        self.button7 = PushButton(self.button_box, text="확인하기", grid=[6, 10], command=self.check_answer)
         #self.check_button1()
 
 
-    def click_button(self):
-        self.check = 1
+
     def correct(self):
         self.message.value = "정답!"
         self.message.text_color = "green"
+
     def wrong(self):
         self.message.value = "오답!"
         self.message.text_color = "red"
+
     def check_answer(self):
-        if self.answer == self.answer.value[self.question_number-1]:
-            if self.check == 1:
+        if self.button7.enabled:
+            print("bbbbb")
+            if self.answer == self.answer.value[self.question_number - 1]:
                 print("텍스트 상자의 내용:", self.answer)
                 self.correct()
-                print("텍스트 상자의 내용:", self.answer)
-        else:
-            self.wrong()
+            else:
+                self.wrong()
 
 
     def next_qna(self):
