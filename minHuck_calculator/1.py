@@ -1,0 +1,3 @@
+import guizero
+
+app.display()
