@@ -24,6 +24,24 @@ def button_clicked(buttonText):
         update_text.value = update_text.value + str(0)
     elif buttonText == '+':
         update_text.value = update_text.value + str("+")
+
+    elif buttonText == '-':
+        update_text.value = update_text.value + str("-")
+    elif buttonText == 'X':
+        update_text.value = update_text.value + str("X")
+    elif buttonText == '%':
+        update_text.value = update_text.value + str("%")
+    elif buttonText == '.':
+        update_text.value = update_text.value + str(".")
+    elif buttonText == '=':
+        cmd_list = buttonText.split('-','+')
+        for command in cmd_list:
+            cmd_len  = len(command)
+            if cmd_len == 0:
+                continue
+                num = int(command)
+                update_text.value = num
+
         
         #update_text.value = 2
          #if buttonText == 'X':
@@ -33,14 +51,14 @@ def tebox():
     big_result.value = update_text.value
 
 app = App(title="caculator",height=1000,width=1900,layout="grid")
-box = Box(app, layout= "grid", grid=[1,0])
-big_result = Text(app, text="Welcome to my caculator",grid=[50,0])
+box = Box(app, layout= "grid", grid=[1,1])
+big_result = Text(app, text="Welcome to my caculator",grid=[20,0])
 update_text = TextBox(app,command=tebox,width=100,height=100,text='',grid=[3,4])
 
 Button1 = PushButton(app, command=button_clicked, args = ["1"], text= "1",width=8,height=4,grid=[100,40])
 Button2 = PushButton(app, command=button_clicked, args = ["+"],text= "+",width=8,height=4,grid=[110,40])
 Button3 = PushButton(app, command=button_clicked, args = ["-"], text= "-",width=8,height=4,grid=[110,41])
-Button4 = PushButton(app, command=button_clicked, args = ["="], text= "=",width=8,height=4,grid=[110,7])
+Button4 = PushButton(app, command=button_clicked, args = ["="], text= "=",width=8,height=4,grid=[110,43])
 Button5 = PushButton(app, command=button_clicked, args = ["X"], text= "X",width=8,height=4,grid=[110,42])
 Button6 = PushButton(app, command=button_clicked, args = ["2"], text= "2",width=8,height=4,grid=[101,40])
 Button7 = PushButton(app, command=button_clicked, args = ["3"], text= "3",width=8,height=4,grid=[102,40])
@@ -50,6 +68,7 @@ Button10 = PushButton(app, command=button_clicked, args = ["6"], text= "6",width
 Button11= PushButton(app, command=button_clicked, args = ["7"], text= "7",width=8,height=4,grid=[100,42])
 Button12 = PushButton(app, command=button_clicked, args = ["8"], text= "8",width=8,height=4,grid=[101,42])
 Button13 = PushButton(app, command=button_clicked, args = ["9"], text= "9",width=8,height=4,grid=[102,42])
-Button14 = PushButton(app, command=button_clicked, args = ["0"], text= "0",width=8,height=4,grid=[100,7])
-Button15 = PushButton(app, command=button_clicked, args = ["@"], text= "@",width=8,height=4,grid=[101,7])
+Button14 = PushButton(app, command=button_clicked, args = ["0"], text= "0",width=8,height=4,grid=[100,43])
+Button15 = PushButton(app, command=button_clicked, args = ["."], text= ".",width=8,height=4,grid=[101,43])
+Button16 = PushButton(app, command=button_clicked, args = ["%"], text= "%",width=8,height=4,grid=[102,43])
 app.display()
