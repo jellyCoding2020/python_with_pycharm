@@ -1,6 +1,10 @@
 from guizero import App,PushButton,TextBox,Text,Box
-
+three = 3
+two = 2
+math_operation = ''
 def button_clicked(buttonText):
+    global math_operation
+
     print(f"{buttonText}부분을 눌렀습니다.")
     if buttonText == '1':
         update_text.value = update_text.value + str(1)
@@ -24,25 +28,49 @@ def button_clicked(buttonText):
         update_text.value = update_text.value + str(0)
     elif buttonText == '+':
         update_text.value = update_text.value + str("+")
+        math_operation = '+'
 
     elif buttonText == '-':
         update_text.value = update_text.value + str("-")
+        math_operation = '-'
+
     elif buttonText == 'X':
-        update_text.value = update_text.value + str("X")
+        update_text.value = update_text.value + str("*")
+        math_operation = '*'
     elif buttonText == '%':
         update_text.value = update_text.value + str("%")
+        math_operation = '%'
     elif buttonText == '.':
         update_text.value = update_text.value + str(".")
     elif buttonText == '=':
-        cmd_list = buttonText.split('-','+')
-        for command in cmd_list:
-            cmd_len  = len(command)
-            if cmd_len == 0:
-                continue
-                num = int(command)
-                update_text.value = num
+        operand_list = update_text.value.split(math_operation)
+        numOfOperand = len(operand_list)
 
-        
+        print('피연산자의 개수 = ', numOfOperand)
+        print('buttonText {}, 분리된 피연산자 {}'.format( buttonText, operand_list) )
+
+        '''for operand in operand_list:
+            if math_operation == '+':
+                result = result + int(operand)
+            elif math_operation == '-':
+                result = result - int(operand)'''
+        if math_operation == '+':
+            if numOfOperand > 2:
+                result = int(operand_list[0]) + int(operand_list[1]) + int(operand_list[2])
+            elif 3> numOfOperand > 1:
+                result = int(operand_list[0]) + int(operand_list[1])
+
+
+
+        elif math_operation == '-':
+            result = int(operand_list[0]) - int(operand_list[1])
+        elif math_operation == '*':
+            result = int(operand_list[0]) * int(operand_list[1])
+        elif math_operation == '%':
+            result = int(operand_list[0]) / int(operand_list[1])
+
+        update_text.value = str(result)
+
         #update_text.value = 2
          #if buttonText == 'X':
              #update_text.value = str( int(update_text.value) * 2 )
@@ -50,10 +78,12 @@ def button_clicked(buttonText):
 def tebox():
     big_result.value = update_text.value
 
-app = App(title="caculator",height=1000,width=1900,layout="grid")
+app = App(title="caculator",height=500,width=1000,layout="grid")
 box = Box(app, layout= "grid", grid=[1,1])
 big_result = Text(app, text="Welcome to my caculator",grid=[20,0])
 update_text = TextBox(app,command=tebox,width=100,height=100,text='',grid=[3,4])
+
+
 
 Button1 = PushButton(app, command=button_clicked, args = ["1"], text= "1",width=8,height=4,grid=[100,40])
 Button2 = PushButton(app, command=button_clicked, args = ["+"],text= "+",width=8,height=4,grid=[110,40])
