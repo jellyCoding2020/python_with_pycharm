@@ -1,7 +1,27 @@
 from guizero import App,PushButton,TextBox,Text,Box
 three = 3
 two = 2
-math_operation = ''
+Calc = []
+
+
+def split_operand(equation, op1, op2):
+        operand_list = []
+        temp1 = equation.split(op1)
+
+        operand_list.append( int(temp1[0])   )
+
+        temp2 = temp1[1].split(op2)
+
+        operand_list.append(int(temp2[0]))
+        operand_list.append(int(temp2[1]))
+
+        numOfOperand = len(operand_list)
+
+        print('피연산자의 개수 = ', numOfOperand)
+        print('피연산자 {}'.format(operand_list))
+
+        return operand_list
+
 def button_clicked(buttonText):
     global math_operation
 
@@ -28,14 +48,19 @@ def button_clicked(buttonText):
         update_text.value = update_text.value + str(0)
     elif buttonText == '+':
         update_text.value = update_text.value + str("+")
+        Calc.append('+')
         math_operation = '+'
+
+
 
     elif buttonText == '-':
         update_text.value = update_text.value + str("-")
+        Calc.append('-')
         math_operation = '-'
 
     elif buttonText == 'X':
         update_text.value = update_text.value + str("*")
+        Calc.append('*')
         math_operation = '*'
     elif buttonText == '%':
         update_text.value = update_text.value + str("%")
@@ -43,33 +68,39 @@ def button_clicked(buttonText):
     elif buttonText == '.':
         update_text.value = update_text.value + str(".")
     elif buttonText == '=':
-        operand_list = update_text.value.split(math_operation)
-        numOfOperand = len(operand_list)
+        if len(Calc) >= 2:
+            Cal1, Cal2 = Calc
+            print(Cal1, Cal2)
 
-        print('피연산자의 개수 = ', numOfOperand)
-        print('buttonText {}, 분리된 피연산자 {}'.format( buttonText, operand_list) )
+        operand_list = split_operand(update_text.value, Cal1, Cal2 )
+        numOfOperand = len(operand_list)
+        if Cal1 == '+':
+          a1 = operand_list[0] + operand_list[1]
+        elif Cal1 == '-':
+          a1 = operand_list[0] - operand_list[1]
+        elif Cal1 == '*':
+          a1 = operand_list[0] * operand_list[1]
+        elif Cal1 == '/':
+          a1 = operand_list[0] / operand_list[1]
+
+
+        if Cal2 == '+':
+          y = a1 + operand_list[2]
+        elif Cal2 == '-':
+          y = a1 - operand_list[2]
+        elif Cal2 == '*':
+          y = a1 * operand_list[2]
+        elif Cal2 == '/':
+          y = a1 / operand_list[2]
 
         '''for operand in operand_list:
             if math_operation == '+':
                 result = result + int(operand)
             elif math_operation == '-':
                 result = result - int(operand)'''
-        if math_operation == '+':
-            if numOfOperand > 2:
-                result = int(operand_list[0]) + int(operand_list[1]) + int(operand_list[2])
-            elif 3> numOfOperand > 1:
-                result = int(operand_list[0]) + int(operand_list[1])
 
 
-
-        elif math_operation == '-':
-            result = int(operand_list[0]) - int(operand_list[1])
-        elif math_operation == '*':
-            result = int(operand_list[0]) * int(operand_list[1])
-        elif math_operation == '%':
-            result = int(operand_list[0]) / int(operand_list[1])
-
-        update_text.value = str(result)
+        update_text.value = str(y)
 
         #update_text.value = 2
          #if buttonText == 'X':
