@@ -2,16 +2,26 @@ from guizero import App, Waffle
 import random
 from time import sleep
 
-colours = ["red", "blue"]
+colours = ["red", "orange", "yellow", "green", "blue", "purple"]
 
 
 board_size = 16
 
 def fill_board():
     for x in range(board_size):
-      for y in range(int(board_size/2)):
+      for y in range(board_size):
         board.set_pixel(x, y, random.choice(colours))
-      #leep(0.5)
+
+
+def init_palette():
+    column = 0
+    for colour in colours:
+        palette.set_pixel(colomn, 0, colour)
+        column += 1
+
+        
+
+
 
 
 app = App("Flood It")
