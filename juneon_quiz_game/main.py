@@ -50,6 +50,7 @@ question = questions.pop(0)
 
 color = "sky blue"
 def draw():
+    global color
     screen.fill("dim gray")
     screen.draw.filled_rect(main_box, color)
     screen.draw.filled_rect(timer_box, "sky blue")
@@ -68,7 +69,6 @@ def draw():
 
 def correct_answer():
     global question, score, time_left
-
     score = score + 1
     if questions:
         question = questions.pop(0)
@@ -79,11 +79,13 @@ def correct_answer():
 
 def on_mouse_down(pos):
     global color
-    index
+    index = 1
     for box in answer_boxes:
         if box.collidepoint(pos):
             print("Clicked on answer " + str(index))
             if index == question[5]:
+                color = "green"
+                screen.draw.filled_rect(main_box, color)
                 print("You got it correct!")
                 correct_answer()
             else:
