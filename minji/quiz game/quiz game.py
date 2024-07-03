@@ -21,14 +21,17 @@ questions_hist = ['과거 송나라의 황제가 무신을 무시하고 문신�
 answer_description = ['문치주의', '칭기즈칸', '마젤란', '콜럼버스']
 
 class quiz():
-    def __init__(self, quiz, ans1,ans2,ans3,ans4, type, answer):
+    def __init__(self, quiz, ans1=[],ans2=[],ans3=[],ans4=[], type=1, answer=[]):
         self.questions = quiz
+        self.type = type
         if type == 1:
+            print('객관식 문제 객체 만들기')
             self.answer1 = ans1
             self.answer2 = ans2
             self.answer3 = ans3
             self.answer4 = ans4
         else :
+            print('주관식 문제 객체 만들기')
             self.answer = answer
 
         self.question_number = 1
@@ -43,7 +46,7 @@ class quiz():
         self.check = 0
 
         self.button_box = Box(app, layout="grid")
-        if type == 1:
+        if self.type == 1:
             self.button1 = PushButton(self.button_box, text=self.answer1[self.question_number - 1], grid=[0, 0])
             self.button2 = PushButton(self.button_box, text=self.answer2[self.question_number - 1], grid=[0, 5])
             self.button3 = PushButton(self.button_box, text=self.answer3[self.question_number - 1], grid=[1, 0])
@@ -77,18 +80,17 @@ class quiz():
         self.message.value = "오답!"
         self.message.text_color = "red"
 
-
-
-
     def next_qna(self):
         self.question_number += 1
         self.message.value = self.questions[self.question_number-1]
-        self.userAnswer.value = ''
-        if type == 1:
+
+        if self.type == 1:
             self.button1.text = self.answer1[self.question_number-1]
             self.button2.text = self.answer2[self.question_number - 1]
             self.button3.text = self.answer3[self.question_number - 1]
             self.button4.text = self.answer4[self.question_number - 1]
+        else :
+            self.userAnswer.value = ''
 
         self.message.text_color = "black"
     def pior_qna(self):
@@ -109,7 +111,7 @@ class quiz():
 #biologi_quiz.show_UI_main()
 #biologi_quiz.show_UI_quiz()
 
-hist_quiz = quiz(questions_hist, answer1, answer2, answer3, answer4, 2, answer_description)
+hist_quiz = quiz(questions_hist, type=2, answer = answer_description)
 hist_quiz.show_UI_quiz()
 
 app.display()

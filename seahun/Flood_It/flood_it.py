@@ -19,7 +19,7 @@ def init_palette():
         palette.set_pixel(colomn, 0, colour)
         column += 1
 
-        
+
 
 
 
