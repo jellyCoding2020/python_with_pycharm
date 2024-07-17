@@ -73,5 +73,8 @@ def start_game():
             if outside_window():
                 game_over()
                 break
+t.listen()
+t.onkey(start_game, 'space')
+
 t.mainloop()
 
