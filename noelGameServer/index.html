@@ -44,7 +44,9 @@
             gameLoop();
     }
     var loops = 0;
+    var peopleVisible=false;
     function gameLoop() {
+            peopleVisible = !peopleVisible;
             loops++;
             if(loops<5) {
                     setTimeout(gameLoop, 3000);
@@ -52,6 +54,11 @@
             else {
                     alert("Game over!");
             }
+    }
+
+    function flashCharacters() {
+        var board = document.getElementById("board");
+        var class
     }
 </script>
 </body>
